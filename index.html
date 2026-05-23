@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoang Nguyen (David) | AI in Business Portfolio · MIS 432</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:        #0e0e0d;
+  --off-black:    #1a1a18;
+  --magenta:      #e8197d;
+  --magenta-dark: #c0146a;
+  --magenta-dim:  rgba(232,25,125,0.12);
+  --off-white:    #f6f4f1;
+  --white:        #ffffff;
+  --border:       #e0ddd8;
+  --text:         #3a3a38;
+  --text-light:   #7a7a76;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--off-white);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SITE NAV ── */
+.site-nav {
+  background: var(--black);
+  border-bottom: 1px solid rgba(232,25,125,0.2);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.nav-brand {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+}
+
+.nav-brand span { color: var(--magenta); }
+
+.nav-links {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  padding: 0 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.nav-links a:hover {
+  color: var(--magenta);
+  border-bottom-color: var(--magenta);
+}
+
+/* ── HERO ── */
+header {
+  background: var(--black);
+  border-bottom: 5px solid var(--magenta);
+  padding: 88px 40px 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg,   transparent, transparent 47px, rgba(232,25,125,0.06) 47px, rgba(232,25,125,0.06) 48px),
+    repeating-linear-gradient(90deg,  transparent, transparent 47px, rgba(232,25,125,0.06) 47px, rgba(232,25,125,0.06) 48px);
+  pointer-events: none;
+}
+
+/* Diagonal accent stripe */
+header::after {
+  content: '';
+  position: absolute;
+  top: 0; right: -60px;
+  width: 320px; height: 100%;
+  background: linear-gradient(135deg, transparent 40%, rgba(232,25,125,0.04) 40%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero-kicker {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.hero-kicker::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--magenta);
+}
+
+.hero-h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  margin-bottom: 20px;
+}
+
+.hero-h1 .accent { color: var(--magenta); }
+
+.hero-sub {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 36px;
+}
+
+.hero-about {
+  max-width: 680px;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  border-left: 2px solid rgba(232,25,125,0.5);
+  padding-left: 20px;
+}
+
+.hero-about strong {
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.hero-stat .stat-n {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--magenta);
+  line-height: 1;
+  display: block;
+}
+
+.hero-stat .stat-l {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-top: 4px;
+  display: block;
+}
+
+/* ── SECTION WRAPPER ── */
+.section-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--off-black);
+  margin-bottom: 32px;
+  line-height: 1.1;
+}
+
+/* ── PROJECTS SECTION ── */
+.projects-section {
+  padding: 72px 0 80px;
+  background: var(--off-white);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ── PROJECT CARD ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--magenta);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--magenta);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.card:hover {
+  box-shadow: 0 8px 32px rgba(232,25,125,0.12), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.card:hover::before { opacity: 1; }
+
+.card-top {
+  padding: 28px 28px 0;
+}
+
+.card-company {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.card-emoji {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.card-co-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.card-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(232,25,125,0.35);
+  margin-left: auto;
+  letter-spacing: 0.06em;
+}
+
+.card h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--off-black);
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 28px 20px;
+}
+
+.tag {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+}
+
+.card-footer {
+  margin-top: auto;
+  padding: 16px 28px;
+  border-top: 1px solid var(--border);
+  background: var(--off-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-link {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: gap 0.15s, color 0.15s;
+}
+
+.card-link:hover {
+  color: var(--magenta-dark);
+  gap: 12px;
+}
+
+.card-link svg {
+  transition: transform 0.15s;
+}
+
+.card-link:hover svg { transform: translateX(3px); }
+
+.card-lab-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.18);
+}
+
+/* ── TAKEAWAYS SECTION ── */
+.takeaways-section {
+  background: var(--off-black);
+  padding: 72px 0 80px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.takeaways-section .section-label { color: var(--magenta); }
+.takeaways-section .section-label::after { background: rgba(255,255,255,0.1); }
+.takeaways-section .section-h2 { color: #ffffff; }
+
+.takeaways-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.takeaway-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 3px solid var(--magenta);
+  padding: 28px 26px;
+  transition: background 0.15s;
+}
+
+.takeaway-card:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.t-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: rgba(232,25,125,0.25);
+  line-height: 1;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.takeaway-card p {
+  font-size: 0.94rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.68);
+  line-height: 1.78;
+}
+
+.takeaway-card strong {
+  color: rgba(255,255,255,0.95);
+  font-weight: 500;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  border-top: 5px solid var(--magenta);
+  padding: 52px 40px;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+}
+
+.footer-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.footer-links a {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.15s;
+}
+
+.footer-links a:hover { opacity: 0.75; }
+
+.footer-meta {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+
+.footer-badge {
+  text-align: right;
+}
+
+.footer-badge .badge-built {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.18);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.footer-badge .badge-wwu {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 800px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .takeaways-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-badge { text-align: left; }
+  .hero-stats { gap: 24px; }
+  .nav-links { display: none; }
+}
+
+@media (max-width: 520px) {
+  header { padding: 56px 20px 52px; }
+  .section-wrap { padding: 0 20px; }
+  .site-nav { padding: 0 20px; }
+  footer { padding: 40px 20px; }
+  .hero-stats { flex-wrap: wrap; gap: 20px; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-inner > * {
+  animation: fadeUp 0.55s ease both;
+}
+.hero-kicker  { animation-delay: 0.05s; }
+.hero-h1      { animation-delay: 0.12s; }
+.hero-sub     { animation-delay: 0.18s; }
+.hero-about   { animation-delay: 0.24s; }
+.hero-stats   { animation-delay: 0.32s; }
+
+.card {
+  animation: fadeUp 0.4s ease both;
+}
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.10s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.20s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+.card:nth-child(6) { animation-delay: 0.30s; }
+.card:nth-child(7) { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-brand">Hoang Nguyen <span>(David)</span></div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#takeaways">Takeaways</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="hero-inner">
+    <div class="hero-kicker">MIS 432 · AI in Business · Western Washington University</div>
+    <div class="hero-h1">AI in<br><span class="accent">Business</span><br>Portfolio</div>
+    <div class="hero-sub">College of Business and Economics &nbsp;·&nbsp; Spring 2026</div>
+    <p class="hero-about">
+      This portfolio documents a quarter-long exploration of how seven real companies — from Netflix to Epic Healthcare — deploy AI to solve hard business problems. In each lab, I moved beyond surface-level theory to <strong>actually build the systems</strong>: recommendation engines, forecasting models, A/B testing frameworks, and agentic AI workflows. What I learned most sharply is that the gap between AI hype and implementation reality lives in the details — data quality, governance design, and the humans-in-the-loop who decide when to trust the output.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-n">7</span>
+        <span class="stat-l">Labs Completed</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-n">7</span>
+        <span class="stat-l">Real Companies</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-n">1</span>
+        <span class="stat-l">Quarter · Spring 2026</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-n">∞</span>
+        <span class="stat-l">Things Learned</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-wrap">
+    <div class="section-label">Labs 01 – 07</div>
+    <h2 class="section-h2">Seven Companies.<br>Seven AI Systems. Built.</h2>
+
+    <div class="projects-grid">
+
+      <!-- L1: EveryCure -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-company">
+            <span class="card-emoji">💊</span>
+            <span class="card-co-name">EveryCure</span>
+            <span class="card-num">L01</span>
+          </div>
+          <h3>AI for Drug Repurposing</h3>
+          <p class="card-desc">I built a knowledge graph system that connects FDA-approved drugs to diseases they weren't originally designed to treat, mirroring EveryCure's approach to accelerating rare disease treatment. The core lesson: AI doesn't replace clinical research — it surfaces hypotheses faster so human experts can prioritize the most promising ones.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Knowledge Graphs</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Drug Discovery</span>
+          <span class="tag">Biomedical AI</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://davidnguyenvn0711-blip.github.io/everycure-drug-repurposing-system/" target="_blank" rel="noopener">
+            View Project
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <span class="card-lab-num">Lab 01</span>
+        </div>
+      </div>
+
+      <!-- L2: Netflix -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-company">
+            <span class="card-emoji">🎬</span>
+            <span class="card-co-name">Netflix</span>
+            <span class="card-num">L02</span>
+          </div>
+          <h3>A/B Testing &amp; Experimentation</h3>
+          <p class="card-desc">I designed and analyzed an A/B testing framework modeled on Netflix's artwork personalization engine, evaluating how thumbnail variations affect click-through rates across different viewer segments. The key insight: without a rigorous experimentation culture, even well-intentioned AI improvements can silently degrade the user experience.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">A/B Testing</span>
+          <span class="tag">Experimentation</span>
+          <span class="tag">Personalization</span>
+          <span class="tag">Statistical Analysis</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://davidnguyenvn0711-blip.github.io/Netflix-Artwork-A-B-Testing/" target="_blank" rel="noopener">
+            View Project
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <span class="card-lab-num">Lab 02</span>
+        </div>
+      </div>
+
+      <!-- L3: Spotify -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-company">
+            <span class="card-emoji">🎵</span>
+            <span class="card-co-name">Spotify</span>
+            <span class="card-num">L03</span>
+          </div>
+          <h3>Recommendation Systems &amp; Personalization</h3>
+          <p class="card-desc">I built a collaborative filtering recommendation engine based on Spotify's approach to surfacing music users didn't know they'd love, exploring how user behavior signals translate into personalized discovery at scale. I learned that recommendation quality depends far less on algorithm sophistication than on how cleanly the underlying behavior data is collected and structured.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Recommendation Systems</span>
+          <span class="tag">Collaborative Filtering</span>
+          <span class="tag">Personalization</span>
+          <span class="tag">Embeddings</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://davidnguyenvn0711-blip.github.io/spotify-recommendation-lab/" target="_blank" rel="noopener">
+            View Project
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <span class="card-lab-num">Lab 03</span>
+        </div>
+      </div>
+
+      <!-- L4: Uber -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-company">
+            <span class="card-emoji">🚗</span>
+            <span class="card-co-name">Uber</span>
+            <span class="card-num">L04</span>
+          </div>
+          <h3>Forecasting &amp; Dynamic Pricing</h3>
+          <p class="card-desc">I modeled Uber's surge pricing system, building a demand forecasting pipeline that predicts ride requests by time and location and adjusts pricing in response. The business lesson was stark: a model that's 90% accurate in testing can still produce pricing decisions that feel deeply unfair to customers — and that gap is a governance problem, not a technical one.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Time-Series Forecasting</span>
+          <span class="tag">Dynamic Pricing</span>
+          <span class="tag">Demand Modeling</span>
+          <span class="tag">Operations AI</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://davidnguyenvn0711-blip.github.io/Uber-Forcasting/" target="_blank" rel="noopener">
+            View Project
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <span class="card-lab-num">Lab 04</span>
+        </div>
+      </div>
+
+      <!-- L5: Waymo -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-company">
+            <span class="card-emoji">🚘</span>
+            <span class="card-co-name">Waymo</span>
+            <span class="card-num">L05</span>
+          </div>
+          <h3>Deep Learning &amp; Computer Vision</h3>
+          <p class="card-desc">I explored the computer vision stack behind Waymo's autonomous vehicles — how convolutional neural networks perceive and classify objects in real-time sensor data to make driving decisions. I walked away understanding that the hard part of self-driving isn't the model accuracy in normal conditions; it's the long tail of rare edge cases the model has never seen.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">CNNs</span>
+          <span class="tag">Autonomous Systems</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://davidnguyenvn0711-blip.github.io/Waymo-Deep-Learning/" target="_blank" rel="noopener">
+            View Project
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <span class="card-lab-num">Lab 05</span>
+        </div>
+      </div>
+
+      <!-- L6: Airbnb -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-company">
+            <span class="card-emoji">🏠</span>
+            <span class="card-co-name">Airbnb</span>
+            <span class="card-num">L06</span>
+          </div>
+          <h3>Marketplace AI &amp; Dynamic Pricing</h3>
+          <p class="card-desc">I built a pricing optimization model for Airbnb hosts, using market signals — seasonality, local events, competitor listings — to recommend nightly rates that balance occupancy against revenue. The platform dynamic I found most interesting: Airbnb's AI must simultaneously optimize for hosts, guests, and the platform itself — three goals that regularly conflict.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Dynamic Pricing</span>
+          <span class="tag">Marketplace AI</span>
+          <span class="tag">Price Optimization</span>
+          <span class="tag">Platform Economics</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://davidnguyenvn0711-blip.github.io/AirBnb/" target="_blank" rel="noopener">
+            View Project
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <span class="card-lab-num">Lab 06</span>
+        </div>
+      </div>
+
+      <!-- L7: Epic (full width) -->
+      <div class="card" style="grid-column: 1 / -1; border-top-color: var(--magenta); flex-direction: row; align-items: stretch;">
+        <div style="flex: 1; display: flex; flex-direction: column;">
+          <div class="card-top">
+            <div class="card-company">
+              <span class="card-emoji">🏥</span>
+              <span class="card-co-name">Epic Healthcare</span>
+              <span class="card-num" style="display:flex;align-items:center;gap:6px;">
+                L07
+                <span style="background:var(--magenta);color:#fff;font-family:'Oswald',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:2px 8px;">Capstone</span>
+              </span>
+            </div>
+            <h3>Agentic AI &amp; Insurance Advocacy</h3>
+            <p class="card-desc">I built a fully functional AI agent in n8n — an AI Insurance Advocate that reads denied insurance claims, pulls patient chart evidence, checks policy criteria, and drafts professional appeal letters autonomously. I also designed a governance framework covering scope, data privacy, human oversight, auditing, and monitoring. The deepest lesson: agentic AI is a system design problem, not a prompting problem — the guardrails and oversight model matter as much as the model itself.</p>
+          </div>
+          <div class="card-tags">
+            <span class="tag">Agentic AI</span>
+            <span class="tag">n8n Workflow</span>
+            <span class="tag">Healthcare AI</span>
+            <span class="tag">AI Governance</span>
+            <span class="tag">Human-in-the-Loop</span>
+            <span class="tag">Tool Use</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:flex-end;border-left:1px solid var(--border);min-width:200px;max-width:220px;">
+          <div class="card-footer" style="border-top:none;flex-direction:column;gap:10px;align-items:flex-start;padding:24px 24px;">
+            <span class="card-lab-num" style="color:rgba(232,25,125,0.45);font-size:11px;">Lab 07 · Capstone</span>
+            <a class="card-link" style="font-size:13px;" href="https://davidnguyenvn0711-blip.github.io/agentic-ai-lab/" target="_blank" rel="noopener">
+              View Project
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects-grid -->
+  </div>
+</section>
+
+<!-- TAKEAWAYS -->
+<section class="takeaways-section" id="takeaways">
+  <div class="section-wrap">
+    <div class="section-label">Lessons Learned</div>
+    <h2 class="section-h2">Key Takeaways</h2>
+    <div class="takeaways-grid">
+      <div class="takeaway-card">
+        <span class="t-num">01</span>
+        <p><strong>AI is only as good as its data pipeline.</strong> Across every lab, model performance was bounded not by algorithm sophistication but by how cleanly the underlying data was collected, labeled, and structured. A mediocre model on great data consistently outperforms a great model on messy data.</p>
+      </div>
+      <div class="takeaway-card">
+        <span class="t-num">02</span>
+        <p><strong>Every AI system needs a human-in-the-loop governance plan.</strong> From Waymo's edge-case problem to Epic's insurance appeals, the hardest design question was never "can the AI do this?" — it was "when should a human override it, and who's accountable when it's wrong?"</p>
+      </div>
+      <div class="takeaway-card">
+        <span class="t-num">03</span>
+        <p><strong>Business value comes from workflow integration, not model accuracy alone.</strong> A recommendation engine with 85% accuracy deployed into the right workflow creates more value than a 95%-accurate model that lives in a spreadsheet. The IS professional's job is to close that gap.</p>
+      </div>
+      <div class="takeaway-card">
+        <span class="t-num">04</span>
+        <p><strong>Agentic AI shifts the design problem from prompting to architecture.</strong> Building the Insurance Advocate taught me that Level 3 AI isn't about clever prompts — it's about choosing the right tools, writing the right guardrails, and deciding where humans stay in the loop. That is an information systems job, not just a technical one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Hoang Nguyen (David)</div>
+      <div class="footer-links">
+        <a href="mailto:Davidnguyen.Supplychain@gmail.com">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Davidnguyen.Supplychain@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/david-m-nguyen/" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="footer-meta">MIS 432 · AI in Business · Western Washington University · College of Business and Economics · Spring 2026</div>
+    </div>
+    <div class="footer-badge">
+      <span class="badge-built">Built with Claude</span>
+      <span class="badge-wwu">MIS 432 · AI in Business</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    var navH = (document.querySelector('.site-nav')||{offsetHeight:48}).offsetHeight;
+    window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - navH - 16, behavior:'smooth'});
+  });
+
+  var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  var sections = [
+    document.getElementById('projects'),
+    document.getElementById('takeaways'),
+    document.getElementById('contact')
+  ].filter(Boolean);
+
+  function setActive(){
+    var sy = window.scrollY + 80;
+    var active = null;
+    sections.forEach(function(s){ if(s.offsetTop <= sy) active = s.id; });
+    navLinks.forEach(function(a){
+      a.style.color = (a.getAttribute('href') === '#' + active) ? 'var(--magenta)' : '';
+      a.style.borderBottomColor = (a.getAttribute('href') === '#' + active) ? 'var(--magenta)' : '';
+    });
+  }
+  window.addEventListener('scroll', setActive, {passive:true});
+  setActive();
+})();
+</script>
+</body>
+</html>
